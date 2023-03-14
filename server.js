@@ -8,6 +8,11 @@ const  bodyParser = require('body-parser')
 const router = require('./network/routes')
 const app = express()
 
+// Conexion a la db 
+const db = require('./db')
+
+db('')
+
 
 /* Init */
 app.use(bodyParser.json())

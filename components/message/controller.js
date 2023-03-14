@@ -18,14 +18,44 @@ const addMessage = (user, message) => {
 }
 
 
-const ListMessage = () =>{
+const ListMessage = user =>{
     return new Promise ((resolve, reject) =>{
-        resolve(store.get())
+        resolve(store.get(user))
     })
 }
+
+const updateMessage = (id,text) =>{
+    return new Promise ( async (resolve, reject) =>{
+        if(!id || !text){
+            reject('Datos invalidos')
+            return false
+        }
+        const result = await store.upd(id,text)
+        resolve(result)
+    })
+}
+
+const deleteMessage = id =>{
+    return new Promise ((resolve, reject) =>{
+        if(!id){
+            reject('id invalidos')
+            return false 
+        }
+
+        store.del(id)
+            .then((data) => resolve(data))
+            .catch(e => {
+                reject(e)
+            })
+    })
+}
+
+
 
 
 module.exports = {
     addMessage,
     ListMessage,
+    updateMessage,
+    deleteMessage
 }

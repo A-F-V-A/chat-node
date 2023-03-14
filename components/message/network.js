@@ -8,7 +8,9 @@ const router    = express.Router()
 
 
 router.get('/',(req,res) =>{
-    controller.ListMessage()
+    const { user } = req.query
+
+    controller.ListMessage(user)
         .then(data => response.success(req,res,200,data))
         .catch(err => response.error(req,res,500,err) )
     
@@ -22,12 +24,20 @@ router.post('/',(req,res) =>{
         .catch(() => response.error(req,res,400,'Informacion invalida'))
 })
 
- router.patch('/:id', (req,res) =>{
-    console(req.params.id)
+router.patch('/:id', (req,res) =>{
+    const { id }    = req.params
+    const { text }  = req.body
+    controller.updateMessage(id,text)
+        .then( data => response.success(req,res,200,data) )
+        .catch(e => response.error(req,res,500,'Error interno'))
+})
 
- })
-
-
+router.delete('/:id',(req,res) =>{
+    const { id } = req.params
+    controller.deleteMessage(id)
+        .then((data) => response.success(req,res,200,`Menssage ${data} Eliminado con exito`))
+        .catch((e) => response.error(req,res,400,e))
+})
 
 
 
