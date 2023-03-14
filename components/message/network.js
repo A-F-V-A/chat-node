@@ -17,10 +17,18 @@ router.get('/',(req,res) =>{
 
 router.post('/',(req,res) =>{
     const { body } = req
-
     controller.addMessage(body.user,body.message)
         .then(data => response.success(req,res,201,data))
         .catch(() => response.error(req,res,400,'Informacion invalida'))
 })
+
+ router.patch('/:id', (req,res) =>{
+    console(req.params.id)
+
+ })
+
+
+
+
 
 module.exports = router

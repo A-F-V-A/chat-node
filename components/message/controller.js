@@ -13,7 +13,7 @@ const addMessage = (user, message) => {
             message : message,
             date    : new Date()
         })
-        resolve('Se aagrego correctamente')
+        resolve('Se agrego correctamente')
     })
 }
 
