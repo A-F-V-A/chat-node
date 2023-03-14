@@ -4,16 +4,11 @@ const { Schema } = mongoose
 
 
 const myShema = new Schema({
-    user:{
-        type: Schema.ObjectId,
-        ref:'User'
-    },
-    message:{
+    name:{
         type: String,
         require:true,
-    },
-    date: Date
+    }
 })
 
-const model = mongoose.model('Message',myShema)
+const model = mongoose.model('User',myShema)
 module.exports = model

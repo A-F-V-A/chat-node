@@ -6,12 +6,19 @@ function addMessage(message){
     newMessage.save()
 }
 
-async function getMessages(User){
-    let data = {}
-    if(User != undefined)
-        data = { user: User}
-    const message = await Model.find(data)
-    return message
+function getMessages(User){
+
+    return new Promise ((resolve, reject) =>{
+        let data = {}
+        if(User != undefined)
+            data = { user: User}
+        const message = Model.find(data)
+            .cast(e => reject(e))
+        resolve(message)
+    })
+
+
+
 }
 
 async function updateText(id,text){
