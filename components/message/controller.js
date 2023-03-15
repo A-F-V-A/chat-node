@@ -1,7 +1,5 @@
 const store = require('./store')
 
-
-
 const addMessage = (user, message) => {
     return new Promise ((resolve, reject)=>{
         if(!user || !message){
@@ -17,11 +15,8 @@ const addMessage = (user, message) => {
     })
 }
 
-
-const ListMessage = user =>{
-    return new Promise ((resolve, reject) =>{
-        resolve(store.get(user))
-    })
+const getUser = async (name) =>{
+    return await store.get(name)
 }
 
 const updateMessage = (id,text) =>{
@@ -50,12 +45,9 @@ const deleteMessage = id =>{
     })
 }
 
-
-
-
 module.exports = {
     addMessage,
-    ListMessage,
+    getUser,
     updateMessage,
     deleteMessage
 }

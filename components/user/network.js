@@ -13,7 +13,6 @@ router.get('/',(req,res) =>{
     
 })
 
-
 router.post('/',(req,res) =>{
 
     const { body } = req
@@ -24,5 +23,19 @@ router.post('/',(req,res) =>{
         
 })
 
+router.patch('/:id', (req,res) =>{
+    const { id }    = req.params
+    const { name }  = req.body
+    controller.uptUser(id,name)
+        .then( data => response.success(req,res,200,data) )
+        .catch(e => response.error(req,res,500,'Error interno'))
+})
+
+router.delete('/:id',(req,res) =>{
+    const { id } = req.params
+    controller.delUser(id)
+        .then((data) => response.success(req,res,200,`Menssage ${data} Eliminado con exito`))
+        .catch((e) => response.error(req,res,400,e))
+})
 
 module.exports = router

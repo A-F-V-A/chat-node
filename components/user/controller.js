@@ -21,10 +21,38 @@ const getUser = async (name) =>{
     return await store.get(name)
 }
 
+const uptUser = (id , name) =>{
+    return new Promise ( async (resolve, reject) =>{
+        if(!id || !name){
+            reject('Datos invalidos')
+            return false
+        }
+        const result = await store.upd(id,name)
+        resolve(result)
+    })
+}
+
+const delUser = (id) =>{
+    return new Promise ((resolve, reject) =>{
+        if(!id){
+            reject('id invalidos')
+            return false 
+        }
+
+        store.del(id)
+            .then((data) => resolve(data))
+            .catch(e => {
+                reject(e)
+            })
+    })
+}
+
 
 
 module.exports = {
     addUser,
-    getUser
+    getUser,
+    uptUser,
+    delUser
 }
 

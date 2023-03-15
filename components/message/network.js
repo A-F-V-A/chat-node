@@ -10,7 +10,7 @@ const router    = express.Router()
 router.get('/',(req,res) =>{
     const { user } = req.query
 
-    controller.ListMessage(user)
+    controller.getUser(user)
         .then(data => response.success(req,res,200,data))
         .catch(err => response.error(req,res,500,err) )
     
