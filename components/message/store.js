@@ -1,3 +1,4 @@
+const { populate } = require('./model')
 const Model = require('./model')
 
 
@@ -7,13 +8,19 @@ function addMessage(message){
 }
 
 async function getMessages(User){
+    return new Promise ((resolve,reject) =>{
+        let data = {}
+        if(User != undefined)
+            data = { User: User}
+    
+        const message = Model.find(data)
+            .populate('user')
+            .catch(e => reject(e))
+        resolve(message)
 
-    let data = {}
-    if(User != undefined)
-        data = { User: User}
+    })
 
-    const user = await Model.find(data)
-    return user
+
 
 
 

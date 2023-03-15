@@ -26,8 +26,8 @@ router.post('/',(req,res) =>{
 
 router.patch('/:id', (req,res) =>{
     const { id }    = req.params
-    const { text }  = req.body
-    controller.updateMessage(id,text)
+    const { message }  = req.body
+    controller.updateMessage(id,message)
         .then( data => response.success(req,res,200,data) )
         .catch(e => response.error(req,res,500,'Error interno'))
 })
